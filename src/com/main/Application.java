@@ -1,4 +1,6 @@
+package com.main;
 import java.util.Scanner;
+import com.modes.*;
 
 public class Application {
 	private static String PROJECT_BANNER = "----- Project 01: Empirical Analysis of Algorithms -----";
@@ -6,6 +8,8 @@ public class Application {
 	private static String WELCOME_MSG = "      Welcome! " + INSTRUCTIONS;
 	private static String USER_TESTING_MODE = "User Testing Mode";
 	private static String SCATTER_PLOT_MODE = "Scatter Plot Mode";
+
+	private static UserTest userTest = new UserTest();
 
 	public static void main(String[] args) {
 		printMenu();
@@ -32,6 +36,7 @@ public class Application {
 					case 1:
 						// TODO: go to UserTestMode class
 						System.out.println("Selected: " + USER_TESTING_MODE);
+						userTest.run();
 						toProcess = false;
 						break;
 					case 2: 
