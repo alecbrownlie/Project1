@@ -6,6 +6,7 @@ public class Euclids {
 
 	}
 
+	// TODO: refactor outside of class
 	public static Double getAvgNumberOfModDivisions(Integer n) {
 		Double total = 0.0;
 		for (int i = 1; i < (n + 1); i++) {

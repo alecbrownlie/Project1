@@ -1,6 +1,5 @@
 import java.lang.Math;
 
-
 public class ConsecutiveIntegerCheck {
 
 	// from Section (1.1)
@@ -19,6 +18,7 @@ public class ConsecutiveIntegerCheck {
 		return count;
 	}
 
+	// TODO: refactor outside of class
 	public static Double getAvgNumberOfDivisions(Integer n) {
 		Double total = 0.0;
 		for (int i = 1; i < (n + 1); i++) {
