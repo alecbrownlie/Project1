@@ -32,7 +32,7 @@ public class Application {
 		try {
 			while (toProcess) {
 				printChoices();
-				switch (scanner.nextInt()) {
+				switch (Integer.parseInt(scanner.nextLine())) {
 					case 1:
 						// TODO: go to UserTestMode class
 						System.out.println("Selected: " + USER_TESTING_MODE);
@@ -48,9 +48,9 @@ public class Application {
 						System.out.println("Not a choice. " + INSTRUCTIONS);
 				}	
 			}
-		} catch (java.util.InputMismatchException e) {
+		} catch (java.lang.NumberFormatException e) {
 			System.out.println("Not a number. " + INSTRUCTIONS);
-			processUserInput();	
+			processUserInput();
 		}
 	}
 }
