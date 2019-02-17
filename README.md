@@ -1,4 +1,6 @@
 # Project1
+Authors: Alec Brownlie & Issac Davidson
+----------------------------
 Prerequisite
 ----------------------------
 	1) cd src
