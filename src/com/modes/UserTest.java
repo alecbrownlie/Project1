@@ -1,9 +1,23 @@
 package com.modes;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 import com.algorithms.Euclids;
 import com.algorithms.ConsecutiveIntegerCheck;
+import com.chart.ScatterPlot;
 
 public class UserTest {
+	private static String MD_AVG_N = "MDavg(n)";
+	private static String D_AVG_N = "Davg(n)";
+	private static String TASK_1 = "Task 1";
+
 	private static Euclids euclids = new Euclids();
 	private static ConsecutiveIntegerCheck cic = new ConsecutiveIntegerCheck();
 
@@ -11,29 +25,46 @@ public class UserTest {
 		runTask1();
 	}
 
-	private static void runTask1() {
-		System.out.println("----- Running Task 1 -----");
-		Integer n = getUserInput("n");
-		Double modDivisions = getAvgNumberOfModDivisions(n);
-		Double divisions = getAvgNumberOfDivisions(n);
-		System.out.println("Number of MDavg(n) : " + modDivisions);
-		System.out.println("Number of Davg(n)  : " + divisions);
+	private static void generateScatterPlot(XYDataset dataset) {
+		SwingUtilities.invokeLater(() -> {
+	      ScatterPlot example = new ScatterPlot(TASK_1, dataset, MD_AVG_N, D_AVG_N);
+	      example.setSize(800, 400);
+	      example.setLocationRelativeTo(null);
+	      example.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	      example.setVisible(true);
+	    });
 	}
 
-	private static Double getAvgNumberOfModDivisions(Integer n) {
-		Double total = 0.0;
+	private static void runTask1() {
+		XYSeriesCollection dataset = new XYSeriesCollection();
+		System.out.println("----- Running " + TASK_1 + " -----");
+		Integer n = getUserInput("n");
+		dataset.addSeries(getAvgModDivisions(n));
+
+		dataset.addSeries(getAvgDivisions(n));
+		generateScatterPlot(dataset);
+	}
+
+	private static XYSeries getAvgModDivisions(int n) {
+		double total = 0.0;
+		XYSeries modDivisions = new XYSeries(MD_AVG_N);
 		for (int i = 1; i < (n + 1); i++) {
 			total += euclids.getDivisionCountGCD(n, i);
+			modDivisions.add(i, total);
 		}
-		return total / n;
+		System.out.println("Number of " + MD_AVG_N + " : " + total / n);
+		return modDivisions;
 	}
 
-	public static Double getAvgNumberOfDivisions(Integer n) {
-		Double total = 0.0;
+	public static XYSeries getAvgDivisions(int n) {
+		double total = 0.0;
+		XYSeries divisions = new XYSeries(D_AVG_N);
 		for (int i = 1; i < (n + 1); i++) {
 			total += cic.getDivisionCountGCD(n, i);
+			divisions.add(i, total);
 		}
-		return total / n;
+		System.out.println("Number of " + D_AVG_N  + " : " + total / n);
+		return divisions;
 	}
 
 	private static Integer getUserInput(String var) {
