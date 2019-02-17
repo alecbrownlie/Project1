@@ -1,4 +1,9 @@
 # Project1
+Prerequisite
+----------------------------
+	1) cd src
+	2) export CLASSPATH=$CLASSPATH:lib/jcommon-1.0.23.jar:lib/jfreechart-1.0.19.jar 
+
 To compile
 ----------------------------
 	1) cd src
