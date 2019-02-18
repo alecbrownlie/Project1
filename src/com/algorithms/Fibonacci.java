@@ -2,7 +2,7 @@ package com.algorithms;
 
 public class Fibonacci {
 
-	public static int getNthElement(int n) { 
+	public int getNthElement(int n) { 
         int a = 0, b = 1, c; 
         if (n == 0) 
             return a; 

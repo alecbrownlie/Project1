@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class SieveOfEratosthenes {
 
-	public static Integer computeGCD(Integer m, Integer n) {
+	public Integer computeGCD(Integer m, Integer n) {
 		Integer result = 1;
 		List<Integer> primeFactors = getPrimeFactors(m);
 		primeFactors.retainAll(getPrimeFactors(n));
@@ -16,9 +16,9 @@ public class SieveOfEratosthenes {
 		return result;
 	}
 
-	private static List<Integer> getPrimeFactors(Integer number){
+	private List<Integer> getPrimeFactors(Integer number){
 		int copy = number;
-		List<Integer> factors = new ArrayList();
+		List<Integer> factors = new ArrayList<Integer>();
 		for (int i = 2; i <= copy; i++) {
 			if (copy % i == 0 && getPrimeNumbers(number).contains(i)) {
 				factors.add(i);
@@ -30,8 +30,8 @@ public class SieveOfEratosthenes {
 	}
 
 	// from Section (1.1)
-	private static List<Integer> getPrimeNumbers(Integer n) {
-		List<Integer> L = new ArrayList<>();
+	private List<Integer> getPrimeNumbers(Integer n) {
+		List<Integer> L = new ArrayList<Integer>();
 		boolean A[] = new boolean[n]; 
 
         for (int p = 2; p < n; p++) {

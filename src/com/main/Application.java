@@ -9,7 +9,8 @@ public class Application {
 	private static String USER_TESTING_MODE = "User Testing Mode";
 	private static String SCATTER_PLOT_MODE = "Scatter Plot Mode";
 
-	private static UserTest userTest = new UserTest();
+	private static UserTestMode userTestMode = new UserTestMode();
+	private static ScatterPlotMode scatterPlotMode = new ScatterPlotMode();
 
 	public static void main(String[] args) {
 		printMenu();
@@ -34,14 +35,13 @@ public class Application {
 				printChoices();
 				switch (Integer.parseInt(scanner.nextLine())) {
 					case 1:
-						// TODO: go to UserTestMode class
 						System.out.println("Selected: " + USER_TESTING_MODE);
-						userTest.run();
+						userTestMode.run();
 						toProcess = false;
 						break;
 					case 2: 
-						// TODO: go to ScatterPlotMode class
 						System.out.println("Selected: " + SCATTER_PLOT_MODE);
+						scatterPlotMode.run();
 						toProcess = false;
 						break;
 					default:

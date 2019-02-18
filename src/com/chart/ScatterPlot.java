@@ -12,15 +12,17 @@ import org.jfree.data.xy.XYDataset;
 
 // referenced https://www.boraji.com/jfreechart-scatter-chart-example
 public class ScatterPlot extends JFrame {
-  public ScatterPlot(String title, XYDataset dataset, String xAxis, String yAxis) {
-    super(title);
+	private static final long serialVersionUID = 6294689542092367723L;
 
-    JFreeChart chart = ChartFactory.createScatterPlot(title, xAxis, yAxis, dataset);
+  	public ScatterPlot(String title, XYDataset dataset, String xAxis, String yAxis) {
+	    super(title);
 
-    XYPlot plot = (XYPlot)chart.getPlot();
-    plot.setBackgroundPaint(new Color(255,228,196));
+	    JFreeChart chart = ChartFactory.createScatterPlot(title, xAxis, yAxis, dataset);
 
-    ChartPanel panel = new ChartPanel(chart);
-    setContentPane(panel);
-  }
+	    XYPlot plot = (XYPlot)chart.getPlot();
+	    plot.setBackgroundPaint(new Color(255,228,196));
+
+	    ChartPanel panel = new ChartPanel(chart);
+	    setContentPane(panel);
+  	}
 }
