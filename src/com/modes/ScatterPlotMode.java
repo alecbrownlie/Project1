@@ -15,30 +15,43 @@ import com.chart.ScatterPlot;
 
 public class ScatterPlotMode extends AbstractMode {
 
-	@Override
-	public void run() {
-		runTask1();
-		//runTask3();
-	}
-
 	protected void runTask1() {
 		XYSeriesCollection datasetMD = new XYSeriesCollection();
 		XYSeriesCollection datasetD = new XYSeriesCollection();
+		XYSeriesCollection dataset = new XYSeriesCollection();
+
 		System.out.println("----- Running " + TASK_1 + " -----");
 
-		Integer n = randomNumGen.nextInt((499 - 199) + 1) + 1;
+		Integer n = randomNumGen.nextInt((159 - 50) + 1) + 1;
 		System.out.println("Value for n: " + n);
 		datasetMD.addSeries(getAvgModDivisions(n));
 		datasetD.addSeries(getAvgDivisions(n));
+		dataset.addSeries(getAvgModDivisions(n));
+		dataset.addSeries(getAvgDivisions(n));
 
 		String titleMD = TASK_1 + ": " + EUCLIDS_ALGO;
 		String titleD = TASK_1 + ": " + CIC_ALGO;
 		generateScatterPlot(datasetMD, titleMD, N_EQUALS_STR + n, MD_AVG_N);
 		generateScatterPlot(datasetD, titleD, N_EQUALS_STR + n, D_AVG_N);
+		generateScatterPlot(dataset, TASK_1, N_EQUALS_STR + n, D_AVG_N);
+	}
+
+	protected void runTask2() { 
+		XYSeriesCollection dataset = new XYSeriesCollection();
+
+		System.out.println("----- Running " + TASK_2 + " -----");
+
+		Integer k = 45;
+		System.out.println("Value for k: " + k);
+		dataset.addSeries(getWorstModDivisions(k));
+		
+		String title = TASK_2 + ": " + EUCLIDS_ALGO;
+		generateScatterPlot(dataset, title, K_EQUALS_STR + k, MD_WORST_N);
 	}
 
 	protected void runTask3() {
 		XYSeriesCollection dataset = new XYSeriesCollection();
+
 		System.out.println("----- Running " + TASK_3 + " -----");
 		dataset.addSeries(getCommonFactorsComplexity());
 
@@ -56,6 +69,16 @@ public class ScatterPlotMode extends AbstractMode {
 		for (int i = 0; i < max; i++) {
 			if (mPrimeFactors.contains(nPrimeFactors.get(i))) commonFactorCount++;
 			series.add(i, commonFactorCount);
+		}
+		return series;
+	}
+
+	private XYSeries getWorstModDivisions(int k) {
+		XYSeries series = new XYSeries(MD_AVG_N);
+		for (int i = 1; i < k; i++) {
+			Integer currentFib = fibonacci.getNthElement(i);
+			Integer nextFib = fibonacci.getNthElement(i+1);
+			series.add(i, euclids.getDivisionCountGCD(nextFib, currentFib));
 		}
 		return series;
 	}
@@ -81,7 +104,7 @@ public class ScatterPlotMode extends AbstractMode {
 	      ScatterPlot scatterPlot = new ScatterPlot(title, dataset, xAxis, yAxis);
 	      scatterPlot.setSize(900, 450);
 	      scatterPlot.setLocationRelativeTo(null);
-	      scatterPlot.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	      scatterPlot.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	      scatterPlot.setVisible(true);
 	    });
 	}

@@ -13,6 +13,15 @@ public class UserTestMode extends AbstractMode {
 		printAvgDivisions(n);
 	}
 
+	protected void runTask2() {
+		System.out.println("----- Running " + TASK_2 + " -----");
+		Integer k = getUserInput("k");
+		Integer m = fibonacci.getNthElement(k + 1);
+		Integer n = fibonacci.getNthElement(k);
+		Integer gcd = euclids.computeGCD(m, n);
+		System.out.println("GCD(m, n) where m = (k + 1) and n = k: " + gcd);
+	}
+
 	protected void runTask3() {
 		System.out.println("----- Running " + TASK_3 + " -----");
 		Integer m = getUserInput("m");
