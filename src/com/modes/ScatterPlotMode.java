@@ -1,6 +1,7 @@
 package com.modes;
 
-import java.util.Random;
+import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -17,51 +18,68 @@ public class ScatterPlotMode extends AbstractMode {
 	@Override
 	public void run() {
 		runTask1();
+		//runTask3();
 	}
 
 	protected void runTask1() {
-		XYSeriesCollection dataset = new XYSeriesCollection();
+		XYSeriesCollection datasetMD = new XYSeriesCollection();
+		XYSeriesCollection datasetD = new XYSeriesCollection();
 		System.out.println("----- Running " + TASK_1 + " -----");
-		Random r = new Random();
-		Integer n = r.nextInt((9999 - 999) + 1) + 1;
+
+		Integer n = randomNumGen.nextInt((499 - 199) + 1) + 1;
 		System.out.println("Value for n: " + n);
-		dataset.addSeries(getAvgModDivisions(n));
-		dataset.addSeries(getAvgDivisions(n));
-		generateScatterPlot(dataset);
+		datasetMD.addSeries(getAvgModDivisions(n));
+		datasetD.addSeries(getAvgDivisions(n));
+
+		String titleMD = TASK_1 + ": " + EUCLIDS_ALGO;
+		String titleD = TASK_1 + ": " + CIC_ALGO;
+		generateScatterPlot(datasetMD, titleMD, N_EQUALS_STR + n, MD_AVG_N);
+		generateScatterPlot(datasetD, titleD, N_EQUALS_STR + n, D_AVG_N);
 	}
 
 	protected void runTask3() {
-		System.out.println("----- Running " + TASK_3 + " (jk) -----");
+		XYSeriesCollection dataset = new XYSeriesCollection();
+		System.out.println("----- Running " + TASK_3 + " -----");
+		dataset.addSeries(getCommonFactorsComplexity());
+
+		String title = TASK_3 + ": " + COMMON_FACTORS;
+		generateScatterPlot(dataset, title, N_EQUALS_STR + 1000, "Common Factors");
+	}
+
+	private XYSeries getCommonFactorsComplexity() {
+		XYSeries series = new XYSeries(THETA_G_N);
+		List<Integer> mPrimeFactors = eratosthenes.getPrimeFactors(randomNumGen.nextInt((999 - 99) + 1) + 1);
+		List<Integer> nPrimeFactors = eratosthenes.getPrimeFactors(randomNumGen.nextInt((999 - 99) + 1) + 1);
+		Integer commonFactorCount = 0;
+		Integer max = Math.max(mPrimeFactors.size(), nPrimeFactors.size());
+		// finding common factors
+		for (int i = 0; i < max; i++) {
+			if (mPrimeFactors.contains(nPrimeFactors.get(i))) commonFactorCount++;
+			series.add(i, commonFactorCount);
+		}
+		return series;
 	}
 
 	private XYSeries getAvgModDivisions(int n) {
-		double total = 0.0;
 		XYSeries series = new XYSeries(MD_AVG_N);
 		for (int i = 1; i < (n + 1); i++) {
-			double divisions = euclids.getDivisionCountGCD(n, i);
-			total += divisions;
-			series.add(i, divisions);
+			series.add(i, euclids.getDivisionCountGCD(n, i));
 		}
-		System.out.println("Number of " + MD_AVG_N + " : " + total / n);
 		return series;
 	}
 
 	private XYSeries getAvgDivisions(int n) {
-		double total = 0.0;
 		XYSeries series = new XYSeries(D_AVG_N);
 		for (int i = 1; i < (n + 1); i++) {
-			double divisions = cic.getDivisionCountGCD(n, i);
-			total += divisions;
-			series.add(i, divisions);
+			series.add(i, cic.getDivisionCountGCD(n, i));
 		}
-		System.out.println("Number of " + D_AVG_N  + " : " + total / n);
 		return series;
 	}
 
-	private void generateScatterPlot(XYDataset dataset) {
+	private void generateScatterPlot(XYDataset dataset, String title, String xAxis, String yAxis) {
 		SwingUtilities.invokeLater(() -> {
-	      ScatterPlot scatterPlot = new ScatterPlot(TASK_1, dataset, MD_AVG_N, D_AVG_N);
-	      scatterPlot.setSize(800, 400);
+	      ScatterPlot scatterPlot = new ScatterPlot(title, dataset, xAxis, yAxis);
+	      scatterPlot.setSize(900, 450);
 	      scatterPlot.setLocationRelativeTo(null);
 	      scatterPlot.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	      scatterPlot.setVisible(true);

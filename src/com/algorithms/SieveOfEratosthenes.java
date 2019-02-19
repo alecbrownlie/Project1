@@ -16,7 +16,19 @@ public class SieveOfEratosthenes {
 		return result;
 	}
 
-	private List<Integer> getPrimeFactors(Integer number){
+	public Integer getGCDCommonElementCount(List<Integer> mPrimeFactors, List<Integer> nPrimeFactors) {
+		Integer result = 0;
+		int i = 0, j = 0;
+	    while (i < mPrimeFactors.size() && j < nPrimeFactors.size()){
+	        result++;
+	        if (mPrimeFactors.get(i) > nPrimeFactors.get(j)) j++;
+	        else if (mPrimeFactors.get(i) < nPrimeFactors.get(j)) i++;
+	        else i++; j++;
+	    }
+	    return result;
+	} 
+
+	public List<Integer> getPrimeFactors(Integer number){
 		int copy = number;
 		List<Integer> factors = new ArrayList<Integer>();
 		for (int i = 2; i <= copy; i++) {
