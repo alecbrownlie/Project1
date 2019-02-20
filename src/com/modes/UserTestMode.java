@@ -1,4 +1,5 @@
 package com.modes;
+
 import java.util.Scanner;
 import java.util.List;
 
@@ -19,15 +20,21 @@ public class UserTestMode extends AbstractMode {
 		Integer m = fibonacci.getNthElement(k + 1);
 		Integer n = fibonacci.getNthElement(k);
 		Integer gcd = euclids.computeGCD(m, n);
-		System.out.println("GCD(m, n) where m = (k + 1) and n = k: " + gcd);
+		System.out.println("m = Fib(k + 1) = " + m);
+		System.out.println("n = Fib(k) = " + n);
+		System.out.println("GCD(m, n) = " + gcd);
 	}
 
 	protected void runTask3() {
 		System.out.println("----- Running " + TASK_3 + " -----");
 		Integer m = getUserInput("m");
 		Integer n = getUserInput("n");
+		List<Integer> mPrimeFactors = eratosthenes.getPrimeFactors(m);
+		List<Integer> nPrimeFactors = eratosthenes.getPrimeFactors(n);
+		System.out.println("Prime Factors of m = " + mPrimeFactors);
+		System.out.println("Prime Factors of n = " + nPrimeFactors);
 		Integer gcd = eratosthenes.computeGCD(m, n);
-		System.out.println("GCD(m, n): " + gcd);	
+		System.out.println("GCD(m, n) = " + gcd);	
 	}
 
 	private void printAvgModDivisions(int n) {
@@ -36,7 +43,7 @@ public class UserTestMode extends AbstractMode {
 			double divisions = euclids.getDivisionCountGCD(n, i);
 			total += divisions;
 		}
-		System.out.println("Number of " + MD_AVG_N + " : " + total / n);
+		System.out.println("Number of " + MD_AVG_N + " = " + total / n);
 	}
 
 	private void printAvgDivisions(int n) {
@@ -45,7 +52,7 @@ public class UserTestMode extends AbstractMode {
 			double divisions = cic.getDivisionCountGCD(n, i);
 			total += divisions;
 		}
-		System.out.println("Number of " + D_AVG_N  + " : " + total / n);
+		System.out.println("Number of " + D_AVG_N  + " = " + total / n);
 	}
 
 	private Integer getUserInput(String var) {
@@ -63,20 +70,4 @@ public class UserTestMode extends AbstractMode {
 		}
 		return result;
 	}
-
-	// TODO
-	// private static void runTask2() {
-	// 	XYSeriesCollection dataset = new XYSeriesCollection();
-	// 	System.out.println("----- Running " + TASK_1 + " -----");
-	// 	Integer n = getUserInput("k");
-	// }
-
-	// private static XYSeries computeGDC(int k) {
-	// 	double totalModDivisions = 0.0;
-	// 	for (k; k >= 1; i++; i--) {
-	// 		int m = fibonacci.getNthElement(k);
-	// 		int n = fibonacci.getNthElement(k + 1);
-	// 	}
-	// }
-	///////
 }

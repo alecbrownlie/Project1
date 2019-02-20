@@ -22,8 +22,8 @@ public class ScatterPlotMode extends AbstractMode {
 
 		System.out.println("----- Running " + TASK_1 + " -----");
 
-		Integer n = randomNumGen.nextInt((159 - 50) + 1) + 1;
-		System.out.println("Value for n: " + n);
+		Integer n = randomNumGen.nextInt(150 - 60 + 1) + 60;
+		System.out.println("n = " + n);
 		datasetMD.addSeries(getAvgModDivisions(n));
 		datasetD.addSeries(getAvgDivisions(n));
 		dataset.addSeries(getAvgModDivisions(n));
@@ -33,7 +33,7 @@ public class ScatterPlotMode extends AbstractMode {
 		String titleD = TASK_1 + ": " + CIC_ALGO;
 		generateScatterPlot(datasetMD, titleMD, N_EQUALS_STR + n, MD_AVG_N);
 		generateScatterPlot(datasetD, titleD, N_EQUALS_STR + n, D_AVG_N);
-		generateScatterPlot(dataset, TASK_1, N_EQUALS_STR + n, D_AVG_N);
+		generateScatterPlot(dataset, TASK_1, N_EQUALS_STR + n, "");
 	}
 
 	protected void runTask2() { 
@@ -42,7 +42,7 @@ public class ScatterPlotMode extends AbstractMode {
 		System.out.println("----- Running " + TASK_2 + " -----");
 
 		Integer k = 45;
-		System.out.println("Value for k: " + k);
+		System.out.println("k = " + k);
 		dataset.addSeries(getWorstModDivisions(k));
 		
 		String title = TASK_2 + ": " + EUCLIDS_ALGO;
@@ -56,20 +56,29 @@ public class ScatterPlotMode extends AbstractMode {
 		dataset.addSeries(getCommonFactorsComplexity());
 
 		String title = TASK_3 + ": " + COMMON_FACTORS;
-		generateScatterPlot(dataset, title, N_EQUALS_STR + 1000, "Common Factors");
+		// generateScatterPlot(dataset, title, N_EQUALS_STR + 1000, "Common Factors");
 	}
 
 	private XYSeries getCommonFactorsComplexity() {
 		XYSeries series = new XYSeries(THETA_G_N);
-		List<Integer> mPrimeFactors = eratosthenes.getPrimeFactors(randomNumGen.nextInt((999 - 99) + 1) + 1);
-		List<Integer> nPrimeFactors = eratosthenes.getPrimeFactors(randomNumGen.nextInt((999 - 99) + 1) + 1);
+		Integer m = randomNumGen.nextInt((999 - 199) + 1) + 1;
+		Integer n = randomNumGen.nextInt((999 - 199) + 1) + 1;
+		List<Integer> mPrimeFactors = eratosthenes.getPrimeFactors(m);
+		List<Integer> nPrimeFactors = eratosthenes.getPrimeFactors(n);
+
+		System.out.println("m = " + m);
+		System.out.println("n = " + n);
+		System.out.println("Prime Factors of m = " + mPrimeFactors);
+		System.out.println("Prime Factors of n = " + nPrimeFactors);
+
 		Integer commonFactorCount = 0;
 		Integer max = Math.max(mPrimeFactors.size(), nPrimeFactors.size());
-		// finding common factors
-		for (int i = 0; i < max; i++) {
-			if (mPrimeFactors.contains(nPrimeFactors.get(i))) commonFactorCount++;
-			series.add(i, commonFactorCount);
-		}
+		System.out.println(THETA_G_N + " = " + max);
+		// TODO: find common factors in O(n)
+		// for (int i = 0; i < max; i++) {
+		// 	if (mPrimeFactors.contains(nPrimeFactors.get(i))) commonFactorCount++;
+		// 	series.add(i, commonFactorCount);
+		// }
 		return series;
 	}
 
