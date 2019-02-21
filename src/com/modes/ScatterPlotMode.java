@@ -1,6 +1,7 @@
 package com.modes;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -14,6 +15,7 @@ import com.modes.AbstractMode;
 import com.chart.ScatterPlot;
 
 public class ScatterPlotMode extends AbstractMode {
+	private Integer comparisonCount = 0;
 
 	protected void runTask1() {
 		XYSeriesCollection datasetMD = new XYSeriesCollection();
@@ -56,30 +58,56 @@ public class ScatterPlotMode extends AbstractMode {
 		dataset.addSeries(getCommonFactorsComplexity());
 
 		String title = TASK_3 + ": " + COMMON_FACTORS;
-		// generateScatterPlot(dataset, title, N_EQUALS_STR + 1000, "Common Factors");
+		generateScatterPlot(dataset, title, N_EQUALS_STR + 1000, "Common Factors");
 	}
 
 	private XYSeries getCommonFactorsComplexity() {
-		XYSeries series = new XYSeries(THETA_G_N);
-		Integer m = randomNumGen.nextInt((999 - 199) + 1) + 1;
-		Integer n = randomNumGen.nextInt((999 - 199) + 1) + 1;
-		List<Integer> mPrimeFactors = eratosthenes.getPrimeFactors(m);
-		List<Integer> nPrimeFactors = eratosthenes.getPrimeFactors(n);
+		// Commented out comparing lists of prime factors using sieve algo.
+		// It seems that comparing many small (prime) numbers in two large lists
+		// demonstrates the comparison algorithm running in O(g) more clearly. 
 
-		System.out.println("m = " + m);
-		System.out.println("n = " + n);
-		System.out.println("Prime Factors of m = " + mPrimeFactors);
-		System.out.println("Prime Factors of n = " + nPrimeFactors);
+		// Integer m = 5040;
+		// Integer n = 2520;
+		// List<Integer> mPrimeFactors = eratosthenes.getPrimeFactors(m);
+		// List<Integer> nPrimeFactors = eratosthenes.getPrimeFactors(n);
+		List<Integer> aRandomNumbers = getRandomNumbers();
+		List<Integer> bRandomNumbers = getRandomNumbers();
 
-		Integer commonFactorCount = 0;
-		Integer max = Math.max(mPrimeFactors.size(), nPrimeFactors.size());
-		System.out.println(THETA_G_N + " = " + max);
-		// TODO: find common factors in O(n)
-		// for (int i = 0; i < max; i++) {
-		// 	if (mPrimeFactors.contains(nPrimeFactors.get(i))) commonFactorCount++;
-		// 	series.add(i, commonFactorCount);
-		// }
+		// System.out.println("m = " + m);
+		// System.out.println("n = " + n);
+		// System.out.println("Prime Factors of m = " + mPrimeFactors);
+		// System.out.println("Prime Factors of n = " + nPrimeFactors);
+		System.out.println("List A = " + aRandomNumbers);
+		System.out.println("List B = " + bRandomNumbers);
+		XYSeries series = plotCommonElementsXY(aRandomNumbers, bRandomNumbers);
 		return series;
+	}
+
+	private XYSeries plotCommonElementsXY(List<Integer> m, List<Integer> n) {
+		XYSeries series = new XYSeries(THETA_G_N);
+		int i = 0, j = 0; 
+	    while (i < m.size() && j < n.size()) 
+	    { 
+	    	comparisonCount++;
+	    	if (m.get(i) < n.get(j)) 
+	        	i++; 
+	      	else if (n.get(j) < m.get(i)) 
+	        	j++; 
+	      	else {
+	        	series.add(i, comparisonCount); 
+	      		j++; 
+	        	i++; 
+	      	} 
+	    }
+	    return series;
+	}
+
+	private List<Integer> getRandomNumbers() {
+		List<Integer> randomNumbers = new ArrayList<Integer>();
+		for (int i = 0; i < 150; i++) {
+			randomNumbers.add(randomNumGen.nextInt(2 - 1 + 1) + 1);
+		}
+		return randomNumbers;
 	}
 
 	private XYSeries getWorstModDivisions(int k) {
