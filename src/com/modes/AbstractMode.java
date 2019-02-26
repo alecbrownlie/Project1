@@ -16,6 +16,8 @@ abstract class AbstractMode {
 	protected static String MD_WORST_N = "MDworst(n)";
 	protected static String D_AVG_N = "Davg(n)";
 	protected static String COMMON_FACTORS = "Finding Common Factors for GCD(m, n)";
+	protected static String COMMON_FACTORS_FOUND = "# common factors";
+	protected static String G_EQUALS_STR = "g = ";
 	protected static String N_EQUALS_STR = "n = ";
 	protected static String K_EQUALS_STR = "k = ";
 	protected static String SIZE_A_B_STR = "(size(A) + size (B)) = (";

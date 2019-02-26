@@ -62,7 +62,7 @@ public class ScatterPlotMode extends AbstractMode {
 		dataset.addSeries(getCommonFactorsComplexity(aRandomNumbers, bRandomNumbers));
 
 		String title = TASK_3 + ": " + COMMON_FACTORS;
-		generateScatterPlot(dataset, title, N_EQUALS_STR + SIZE_A_B_STR + aRandomNumbers.size() + " + " + bRandomNumbers.size() + ")", NUM_COMP_COMMON);
+		generateScatterPlot(dataset, title, G_EQUALS_STR + SIZE_A_B_STR + aRandomNumbers.size() + " + " + bRandomNumbers.size() + ")", THETA_G_N);
 	}
 
 	private XYSeries getCommonFactorsComplexity(List<Integer> listA, List<Integer> listB) {	
@@ -73,7 +73,7 @@ public class ScatterPlotMode extends AbstractMode {
 	}
 
 	private XYSeries plotCommonElementsXY(List<Integer> m, List<Integer> n) {
-		XYSeries series = new XYSeries(THETA_G_N);
+		XYSeries series = new XYSeries(COMMON_FACTORS_FOUND);
 		int i = 0, j = 0; 
 	    while (i < m.size() && j < n.size()) 
 	    { 
@@ -117,10 +117,10 @@ public class ScatterPlotMode extends AbstractMode {
 		return series;
 	}
 
-	private XYSeries getAvgDivisions(Integer n) {
+	private XYSeries getAvgDivisions(int n) {
 		XYSeries series = new XYSeries(D_AVG_N);
-		for (int i = 1; i < (n + 1); i++) {
-			series.add(i, cic.getDivisionCountGCD(n, i));
+		for (BigInteger i = BigInteger.valueOf(1); i.compareTo(BigInteger.valueOf(n + 1)) < 0; i = i.add(BigInteger.ONE)) {
+			series.add(i, cic.getDivisionCountGCD(BigInteger.valueOf(n), i));
 		}
 		return series;
 	}
