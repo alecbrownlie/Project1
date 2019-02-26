@@ -1,5 +1,5 @@
 # Project1
-Authors: Alec Brownlie & Issac Davidson
+Authors: Alec Brownlie & Isaac Davidson
 ----------------------------
 To run:
 ----------------------------
