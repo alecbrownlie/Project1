@@ -1,16 +1,18 @@
 package com.algorithms;
+import java.math.BigInteger;
 
 public class Fibonacci {
 
-	public int getNthElement(int n) { 
-        int a = 0, b = 1, c; 
-        if (n == 0) 
-            return a; 
-        for (int i = 2; i <= n; i++) { 
-            c = a + b; 
+	public BigInteger getNthElement(int n) { 
+        BigInteger a = BigInteger.valueOf(0); 
+        BigInteger b = BigInteger.valueOf(1); 
+        BigInteger c = BigInteger.valueOf(1); 
+        for (int i = 2 ; i <= n; i++) 
+        { 
+            c = a.add(b); 
             a = b; 
             b = c; 
         } 
-        return b; 
+        return a; 
     } 
 }

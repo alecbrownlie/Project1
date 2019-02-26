@@ -3,7 +3,6 @@ import java.lang.Math;
 
 public class ConsecutiveIntegerCheck {
 
-	// from Section (1.1)
 	public Integer getDivisionCountGCD(Integer m, Integer n) {
 		int count = 0;		
 		for (int t = Math.min(m, n); t > 0; t--) {		

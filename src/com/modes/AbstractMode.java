@@ -18,10 +18,12 @@ abstract class AbstractMode {
 	protected static String COMMON_FACTORS = "Finding Common Factors for GCD(m, n)";
 	protected static String N_EQUALS_STR = "n = ";
 	protected static String K_EQUALS_STR = "k = ";
+	protected static String SIZE_A_B_STR = "(size(A) + size (B)) = (";
 	protected static String TASK_1 = "Task 1";
 	protected static String TASK_2 = "Task 2";
 	protected static String TASK_3 = "Task 3";
 	protected static String THETA_G_N = "\u03B8(g)";
+	protected static String NUM_COMP_COMMON = "Number of Comparisions";
 
 	protected static Euclids euclids = new Euclids();
 	protected static ConsecutiveIntegerCheck cic = new ConsecutiveIntegerCheck();

@@ -10,7 +10,6 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.xy.XYDataset;
 
-// referenced https://www.boraji.com/jfreechart-scatter-chart-example
 public class ScatterPlot extends JFrame {
 	private static final long serialVersionUID = 6294689542092367723L;
 
@@ -21,7 +20,7 @@ public class ScatterPlot extends JFrame {
 
 	    XYPlot plot = (XYPlot)chart.getPlot();
 	    plot.setBackgroundPaint(new Color(255,228,196));
-
+	  
 	    ChartPanel panel = new ChartPanel(chart);
 	    setContentPane(panel);
   	}

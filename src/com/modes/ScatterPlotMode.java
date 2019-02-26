@@ -2,6 +2,7 @@ package com.modes;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.math.BigInteger;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -43,7 +44,7 @@ public class ScatterPlotMode extends AbstractMode {
 
 		System.out.println("----- Running " + TASK_2 + " -----");
 
-		Integer k = 45;
+		Integer k = 85;
 		System.out.println("k = " + k);
 		dataset.addSeries(getWorstModDivisions(k));
 		
@@ -54,32 +55,20 @@ public class ScatterPlotMode extends AbstractMode {
 	protected void runTask3() {
 		XYSeriesCollection dataset = new XYSeriesCollection();
 
-		System.out.println("----- Running " + TASK_3 + " -----");
-		dataset.addSeries(getCommonFactorsComplexity());
-
-		String title = TASK_3 + ": " + COMMON_FACTORS;
-		generateScatterPlot(dataset, title, N_EQUALS_STR + 1000, "Common Factors");
-	}
-
-	private XYSeries getCommonFactorsComplexity() {
-		// Commented out comparing lists of prime factors using sieve algo.
-		// It seems that comparing many small (prime) numbers in two large lists
-		// demonstrates the comparison algorithm running in O(g) more clearly. 
-
-		// Integer m = 5040;
-		// Integer n = 2520;
-		// List<Integer> mPrimeFactors = eratosthenes.getPrimeFactors(m);
-		// List<Integer> nPrimeFactors = eratosthenes.getPrimeFactors(n);
 		List<Integer> aRandomNumbers = getRandomNumbers();
 		List<Integer> bRandomNumbers = getRandomNumbers();
 
-		// System.out.println("m = " + m);
-		// System.out.println("n = " + n);
-		// System.out.println("Prime Factors of m = " + mPrimeFactors);
-		// System.out.println("Prime Factors of n = " + nPrimeFactors);
-		System.out.println("List A = " + aRandomNumbers);
-		System.out.println("List B = " + bRandomNumbers);
-		XYSeries series = plotCommonElementsXY(aRandomNumbers, bRandomNumbers);
+		System.out.println("----- Running " + TASK_3 + " -----");
+		dataset.addSeries(getCommonFactorsComplexity(aRandomNumbers, bRandomNumbers));
+
+		String title = TASK_3 + ": " + COMMON_FACTORS;
+		generateScatterPlot(dataset, title, N_EQUALS_STR + SIZE_A_B_STR + aRandomNumbers.size() + " + " + bRandomNumbers.size() + ")", NUM_COMP_COMMON);
+	}
+
+	private XYSeries getCommonFactorsComplexity(List<Integer> listA, List<Integer> listB) {	
+		System.out.println("List A = " + listA);
+		System.out.println("List B = " + listB);
+		XYSeries series = plotCommonElementsXY(listA, listB);
 		return series;
 	}
 
@@ -105,16 +94,16 @@ public class ScatterPlotMode extends AbstractMode {
 	private List<Integer> getRandomNumbers() {
 		List<Integer> randomNumbers = new ArrayList<Integer>();
 		for (int i = 0; i < 150; i++) {
-			randomNumbers.add(randomNumGen.nextInt(2 - 1 + 1) + 1);
+			randomNumbers.add(randomNumGen.nextInt(3 - 2 + 1) + 2);
 		}
 		return randomNumbers;
 	}
 
-	private XYSeries getWorstModDivisions(int k) {
+	private XYSeries getWorstModDivisions(Integer k) {
 		XYSeries series = new XYSeries(MD_AVG_N);
 		for (int i = 1; i < k; i++) {
-			Integer currentFib = fibonacci.getNthElement(i);
-			Integer nextFib = fibonacci.getNthElement(i+1);
+			BigInteger currentFib = fibonacci.getNthElement(i);
+			BigInteger nextFib = fibonacci.getNthElement(i+1);
 			series.add(i, euclids.getDivisionCountGCD(nextFib, currentFib));
 		}
 		return series;
@@ -122,13 +111,13 @@ public class ScatterPlotMode extends AbstractMode {
 
 	private XYSeries getAvgModDivisions(int n) {
 		XYSeries series = new XYSeries(MD_AVG_N);
-		for (int i = 1; i < (n + 1); i++) {
-			series.add(i, euclids.getDivisionCountGCD(n, i));
+		for (BigInteger i = BigInteger.valueOf(1); i.compareTo(BigInteger.valueOf(n + 1)) < 0; i = i.add(BigInteger.ONE)) {
+			series.add(i, euclids.getDivisionCountGCD(BigInteger.valueOf(n), i));
 		}
 		return series;
 	}
 
-	private XYSeries getAvgDivisions(int n) {
+	private XYSeries getAvgDivisions(Integer n) {
 		XYSeries series = new XYSeries(D_AVG_N);
 		for (int i = 1; i < (n + 1); i++) {
 			series.add(i, cic.getDivisionCountGCD(n, i));

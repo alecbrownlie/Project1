@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 public class SieveOfEratosthenes {
 
+	// used in UserTestMode
 	public Integer computeGCD(Integer m, Integer n) {
 		Integer result = 1;
 		List<Integer> primeFactors = getPrimeFactors(m);
@@ -15,18 +16,6 @@ public class SieveOfEratosthenes {
 		}
 		return result;
 	}
-
-	public Integer getGCDCommonElementCount(List<Integer> mPrimeFactors, List<Integer> nPrimeFactors) {
-		Integer result = 0;
-		int i = 0, j = 0;
-	    while (i < mPrimeFactors.size() && j < nPrimeFactors.size()){
-	        result++;
-	        if (mPrimeFactors.get(i) > nPrimeFactors.get(j)) j++;
-	        else if (mPrimeFactors.get(i) < nPrimeFactors.get(j)) i++;
-	        else i++; j++;
-	    }
-	    return result;
-	} 
 
 	public List<Integer> getPrimeFactors(Integer number){
 		int copy = number;
@@ -42,27 +31,24 @@ public class SieveOfEratosthenes {
 	}
 
 	// from Section (1.1)
-	private List<Integer> getPrimeNumbers(Integer n) {
+	public List<Integer> getPrimeNumbers(Integer n) {
 		List<Integer> L = new ArrayList<Integer>();
-		boolean A[] = new boolean[n]; 
+		boolean[] isPrime = new boolean[n+1];
+        for (int i = 2; i <= n; i++) {
+            isPrime[i] = true;
+        }
 
-        for (int p = 2; p < n; p++) {
-        	A[p] = true;
-      	}
+        for (int factor = 2; factor*factor <= n; factor++) {
+            if (isPrime[factor]) {
+                for (int j = factor; factor*j <= n; j++) {
+                    isPrime[factor*j] = false;
+                }
+            }
+        }
 
-      	for (int p = 2; p < Math.sqrt(n); p++) {
-        	if (A[p] == true) {
-            	for(int j = (p * p); j < n; j = j + p) {
-               		A[j] = false;
-            	}
-        	}
-      	}
-
-      	for (int p = 2; p < n; p++) {
-      		if (A[p] == true) {
-      			L.add(p);
-      		}
-      	}
-      	return L;
+        for (int i = 2; i <= n; i++) {
+            if (isPrime[i]) L.add(i);
+        }
+        return L; 
 	}
 }
