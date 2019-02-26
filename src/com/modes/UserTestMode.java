@@ -54,7 +54,7 @@ public class UserTestMode extends AbstractMode {
 			BigInteger divisions = euclids.getDivisionCountGCD(BigInteger.valueOf(n), i);
 			total = total.add(new BigDecimal(divisions));
 		}
-		System.out.println("Number of " + MD_AVG_N + " = " + total.divide(new BigDecimal(n), MathContext.DECIMAL128));
+		System.out.println(MD_AVG_N + " = " + total.divide(new BigDecimal(n), MathContext.DECIMAL128));
 	}
 
 	private void printAvgDivisions(int n) {
@@ -63,7 +63,7 @@ public class UserTestMode extends AbstractMode {
 			BigInteger divisions = cic.getDivisionCountGCD(BigInteger.valueOf(n), i);
 			total = total.add(new BigDecimal(divisions));
 		}
-		System.out.println("Number of " + D_AVG_N  + " = " + total.divide(new BigDecimal(n), MathContext.DECIMAL128));
+		System.out.println(D_AVG_N  + " = " + total.divide(new BigDecimal(n), MathContext.DECIMAL128));
 	}
 
 	private void printAvgTimeModDivisions(int n) {
