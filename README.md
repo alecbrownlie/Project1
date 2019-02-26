@@ -24,8 +24,8 @@ Selected: User Testing Mode
 ----- Running Task 1 -----
 Please enter a single positive value for n: 
 5
-Number of MDavg(n) = 1.8
-Number of Davg(n) = 3.2
+MDavg(n) = 1.8
+Davg(n) = 3.2
 Average time of modulo divisions in nanoseconds = 12293.0
 ----- Running Task 2 -----
 Please enter a single positive value for k: 
