@@ -1,21 +1,11 @@
 # Project1
 Authors: Alec Brownlie & Issac Davidson
 ----------------------------
-Prerequisite
-----------------------------
-	1) cd src
-	2) export CLASSPATH=$CLASSPATH:lib/jcommon-1.0.23.jar:lib/jfreechart-1.0.19.jar 
-
-To compile
-----------------------------
-	1) cd src
-	2) javac com/main/Application.java
-
 To run:
 ----------------------------
-	1) cd src
-	2) java com/main/Application
-
+```
+[./Project1]$ sh run.sh
+```
 Expected Output for User Mode:
 ----------------------------
 - For Task 1, use numbers that exceed 5 digits may slow down program. This is due to the number of basic operations made by the consecutive integer checking algorithm.
