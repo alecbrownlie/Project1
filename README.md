@@ -8,7 +8,7 @@ To run:
 ```
 Expected Output for User Mode:
 ----------------------------
-- For Task 1, use numbers that exceed 5 digits may slow down program. This is due to the number of basic operations made by the consecutive integer checking algorithm.
+- For Task 1, use numbers that exceed 5 digits may noticeably slow down program. This is due to the number of basic operations made by the consecutive integer checking algorithm.
 - Console Output:
 ```
 ----- Project 01: Empirical Analysis of Algorithms -----
