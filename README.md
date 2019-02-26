@@ -18,6 +18,8 @@ To run:
 
 Expected Output for User Mode:
 ----------------------------
+- For Task 1, use numbers that exceed 5 digits may slow down program. This is due to the number of basic operations made by the consecutive integer checking algorithm.
+- Console Output:
 ```
 ----- Project 01: Empirical Analysis of Algorithms -----
       Welcome! Please select mode for analysis: 
@@ -56,6 +58,11 @@ GCD(m, n) = 1
 
 Expected Output for Scatter Plot Mode:
 -----------------------------
+- n for Task 1 is random at runtime between the range 60-150.
+- k for Task 2 is set at 85. 
+- List A and List B are set to size 150 that contain random number of 2s and 3s.
+- When scatter plot graphs are generated, windows for each graph may be stacked on top of another.
+- Console Output:
 ```
 ----- Project 01: Empirical Analysis of Algorithms -----
       Welcome! Please select mode for analysis: 
