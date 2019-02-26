@@ -49,8 +49,8 @@ GCD(m, n) = 1
 Expected Output for Scatter Plot Mode:
 -----------------------------
 - n for Task 1 is random at runtime between the range 60-150.
-- k for Task 2 is set at 85. 
-- List A and List B are set to size 150 that contain random number of 2s and 3s.
+- k for Task 2 is set at 85, a value that clearly shows the algorithm’s worst-case efficiency class, is not necessarily the upper bound. Could be set to a higher integer.
+- List A and List B each have a max size 150 that contain random number of 2s and 3s.
 - When scatter plot graphs are generated, windows for each graph may be stacked on top of another.
 - Console Output:
 ```
