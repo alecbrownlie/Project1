@@ -3,6 +3,8 @@ Authors: Alec Brownlie & Isaac Davidson
 ----------------------------
 To run:
 ----------------------------
+- Must have Java 8 JDK/JRE installed.
+- Run following command:
 ```
 [./Project1]$ sh run.sh
 ```
