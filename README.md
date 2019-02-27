@@ -61,11 +61,20 @@ Expected Output for Scatter Plot Mode:
 2
 Selected: Scatter Plot Mode
 ----- Running Task 1 -----
-n = 62
+n = 124
 ----- Running Task 2 -----
 k = 85
 ----- Running Task 3 -----
 List A = [2, 2, 2, 2, 3, 3, 2, 3, 3, 3, 3, 2, 3, 3, 3, 3, 2, 3, 3, 3, 3, 2, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 2, 2, 2, 2, 3, 3, 2, 3, 2, 2, 3, 2, 2, 3, 2, 2, 3, 3, 2, 2, 2, 3, 3, 2, 3, 3, 2, 3, 3, 3, 2, 2, 3, 3, 3, 2, 2, 3, 3, 3, 3, 2, 2, 3, 3, 3, 2, 3, 3, 2, 3, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 2, 2, 3, 3, 2, 2, 2, 2, 3, 3, 3, 3, 2, 3, 2, 2, 3, 2, 2, 2, 2, 2, 3, 3, 3, 2, 2, 3, 3, 2, 3, 2, 3, 3, 3, 2, 3, 3, 2]
 List B = [2, 3, 3, 2, 2, 3, 2, 2, 3, 3, 2, 2, 2, 3, 2, 3, 2, 2, 2, 2, 3, 2, 3, 2, 2, 3, 2, 2, 3, 3, 3, 3, 3, 2, 3, 3, 2, 3, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 2, 2, 3, 3, 2, 3, 2, 2, 2, 2, 2, 3, 2, 2, 3, 3, 2, 2, 3, 3, 2, 3, 3, 2, 3, 2, 3, 2, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 3, 3, 3, 3, 2, 3, 3, 3, 2, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 3, 3, 2, 2, 3, 3, 2, 3, 2, 3, 3, 3, 2, 3, 2, 3, 3, 3, 3, 2, 2, 3, 3, 3, 3, 3, 2, 3, 2, 3, 3, 2, 3, 3, 3, 2, 3, 3, 2]
 ```
+Screenshots of Scatter Plots
+-----------------------------
+- Task 1
+![alt text](https://github.com/alecbrownlie/Project1/blob/master/graphs/task1/euclid_vs_cic.png)
+- Task 2
+![alt text](https://github.com/alecbrownlie/Project1/blob/master/graphs/task2/euclid_w_fibonacci.png)
+- Task 3
+![alt text](https://github.com/alecbrownlie/Project1/blob/master/graphs/task3/common_factors.png)
+
 - GitHub link: https://github.com/alecbrownlie/Project1
