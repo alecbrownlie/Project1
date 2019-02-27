@@ -62,7 +62,7 @@ public class ScatterPlotMode extends AbstractMode {
 		dataset.addSeries(getCommonFactorsComplexity(aRandomNumbers, bRandomNumbers));
 
 		String title = TASK_3 + ": " + COMMON_FACTORS;
-		generateScatterPlot(dataset, title, G_EQUALS_STR + SIZE_A_B_STR + aRandomNumbers.size() + " + " + bRandomNumbers.size() + ")", THETA_G_N);
+		generateScatterPlot(dataset, title, G_EQUALS_STR + MAX_SIZE_A_B_STR + aRandomNumbers.size() + ", " + bRandomNumbers.size() + "))", NUM_COMP_COMMON);
 	}
 
 	private XYSeries getCommonFactorsComplexity(List<Integer> listA, List<Integer> listB) {	
