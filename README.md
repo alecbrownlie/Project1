@@ -50,7 +50,7 @@ Expected Output for Scatter Plot Mode:
 -----------------------------
 - n for Task 1 is random at runtime between the range 60-150.
 - k for Task 2 is set at 85.
-- List A and List B each have a max size 150 that large array of small prime numbers.
+- List A and List B contain random number of small prime numbers at runtime and will have a max size of 150.
 - When scatter plot graphs are generated, windows for each graph may be stacked on top of another.
 - Console Output:
 ```
