@@ -9,10 +9,24 @@ public class SieveOfEratosthenes {
 	// used in UserTestMode
 	public Integer computeGCD(Integer m, Integer n) {
 		Integer result = 1;
-		List<Integer> primeFactors = getPrimeFactors(m);
-		primeFactors.retainAll(getPrimeFactors(n));
-		for (Integer i : primeFactors) {
-			result *= i;
+		List<Integer> mPrimeFactors = getPrimeFactors(m);
+		List<Integer> nPrimeFactors = getPrimeFactors(n);
+		List<Integer> primeFactors = new ArrayList<Integer>();
+		int i = 0, j = 0; 
+	    while (i < mPrimeFactors.size() && j < nPrimeFactors.size()) 
+	    { 
+	    	if (mPrimeFactors.get(i) < nPrimeFactors.get(j)) 
+	        	i++; 
+	      	else if (nPrimeFactors.get(j) < mPrimeFactors.get(i)) 
+	        	j++; 
+	      	else {
+	        	primeFactors.add(mPrimeFactors.get(i)); 
+	      		j++; 
+	        	i++; 
+	      	} 
+	    }
+	    for (Integer factor : primeFactors) {
+			result *= factor;
 		}
 		return result;
 	}
