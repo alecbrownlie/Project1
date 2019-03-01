@@ -12,6 +12,7 @@ abstract class AbstractMode {
 	protected static String CIC_ALGO = "Consecutive Integer Check Algorithm";
 	protected static String SIEVE_ALGO = "Sieve Of Eratosthenes Algorithm";
 
+	protected static String MD = "MD";
 	protected static String MD_AVG_N = "MDavg(n)";
 	protected static String MD_WORST_N = "MDworst(n)";
 	protected static String D_AVG_N = "Davg(n)";
@@ -26,6 +27,7 @@ abstract class AbstractMode {
 	protected static String TASK_3 = "Task 3";
 	protected static String THETA_G_N = "\u03B8(g)";
 	protected static String NUM_COMP_COMMON = "Number of Comparisions";
+	protected static String NUM_MOD_DIVISIONS = "Number Of Modulo Divisions";
 
 	protected static Euclids euclids = new Euclids();
 	protected static ConsecutiveIntegerCheck cic = new ConsecutiveIntegerCheck();

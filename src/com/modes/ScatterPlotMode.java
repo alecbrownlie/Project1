@@ -52,7 +52,7 @@ public class ScatterPlotMode extends AbstractMode {
 		dataset.addSeries(getWorstModDivisions(k));
 		
 		String title = TASK_2 + ": " + EUCLIDS_ALGO;
-		generateScatterPlot(dataset, title, K_EQUALS_STR + k, MD_WORST_N);
+		generateScatterPlot(dataset, title, K_EQUALS_STR + k, NUM_MOD_DIVISIONS);
 	}
 
 	protected void runTask3() {
@@ -103,7 +103,7 @@ public class ScatterPlotMode extends AbstractMode {
 	}
 
 	private XYSeries getWorstModDivisions(Integer k) {
-		XYSeries series = new XYSeries(MD_AVG_N);
+		XYSeries series = new XYSeries(MD);
 		for (int i = 1; i < k; i++) {
 			BigInteger currentFib = fibonacci.getNthElement(i);
 			BigInteger nextFib = fibonacci.getNthElement(i+1);
