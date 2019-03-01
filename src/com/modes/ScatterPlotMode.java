@@ -3,6 +3,8 @@ package com.modes;
 import java.util.List;
 import java.util.ArrayList;
 import java.math.BigInteger;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -25,7 +27,8 @@ public class ScatterPlotMode extends AbstractMode {
 
 		System.out.println("----- Running " + TASK_1 + " -----");
 
-		Integer n = randomNumGen.nextInt(150 - 60 + 1) + 60;
+		Integer n = randomNumGen.nextInt(100 - 60 + 1) + 60;
+		
 		System.out.println("n = " + n);
 		datasetMD.addSeries(getAvgModDivisions(n));
 		datasetD.addSeries(getAvgDivisions(n));
@@ -111,16 +114,26 @@ public class ScatterPlotMode extends AbstractMode {
 
 	private XYSeries getAvgModDivisions(int n) {
 		XYSeries series = new XYSeries(MD_AVG_N);
-		for (BigInteger i = BigInteger.valueOf(1); i.compareTo(BigInteger.valueOf(n + 1)) < 0; i = i.add(BigInteger.ONE)) {
-			series.add(i, euclids.getDivisionCountGCD(BigInteger.valueOf(n), i));
+		for (BigInteger i = BigInteger.valueOf(1); i.compareTo(BigInteger.valueOf(n + 1)) < 0; i = i.add(BigInteger.ONE)){
+			BigDecimal total = new BigDecimal(0.0);
+			for (BigInteger j = BigInteger.valueOf(1); j.compareTo(i) < 0; j = j.add(BigInteger.ONE)) {
+				BigInteger divisions = euclids.getDivisionCountGCD(BigInteger.valueOf(n), j);
+				total = total.add(new BigDecimal(divisions));
+			}
+			series.add(i, total.divide(new BigDecimal(n), MathContext.DECIMAL128));
 		}
 		return series;
 	}
 
 	private XYSeries getAvgDivisions(int n) {
 		XYSeries series = new XYSeries(D_AVG_N);
-		for (BigInteger i = BigInteger.valueOf(1); i.compareTo(BigInteger.valueOf(n + 1)) < 0; i = i.add(BigInteger.ONE)) {
-			series.add(i, cic.getDivisionCountGCD(BigInteger.valueOf(n), i));
+		for (BigInteger i = BigInteger.valueOf(1); i.compareTo(BigInteger.valueOf(n + 1)) < 0; i = i.add(BigInteger.ONE)){
+			BigDecimal total = new BigDecimal(0.0);
+			for (BigInteger j = BigInteger.valueOf(1); j.compareTo(i) < 0; j = j.add(BigInteger.ONE)) {
+				BigInteger divisions = cic.getDivisionCountGCD(BigInteger.valueOf(n), j);
+				total = total.add(new BigDecimal(divisions));
+			}
+			series.add(i, total.divide(new BigDecimal(n), MathContext.DECIMAL128));
 		}
 		return series;
 	}
