@@ -120,7 +120,7 @@ public class ScatterPlotMode extends AbstractMode {
 				BigInteger divisions = euclids.getDivisionCountGCD(BigInteger.valueOf(n), j);
 				total = total.add(new BigDecimal(divisions));
 			}
-			series.add(i, total.divide(new BigDecimal(n), MathContext.DECIMAL128));
+			series.add(i, total.divide(new BigDecimal(i), MathContext.DECIMAL128));
 		}
 		return series;
 	}
@@ -133,7 +133,7 @@ public class ScatterPlotMode extends AbstractMode {
 				BigInteger divisions = cic.getDivisionCountGCD(BigInteger.valueOf(n), j);
 				total = total.add(new BigDecimal(divisions));
 			}
-			series.add(i, total.divide(new BigDecimal(n), MathContext.DECIMAL128));
+			series.add(i, total.divide(new BigDecimal(i), MathContext.DECIMAL128));
 		}
 		return series;
 	}
