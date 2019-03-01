@@ -116,7 +116,7 @@ public class ScatterPlotMode extends AbstractMode {
 		XYSeries series = new XYSeries(MD_AVG_N);
 		for (BigInteger i = BigInteger.valueOf(1); i.compareTo(BigInteger.valueOf(n + 1)) < 0; i = i.add(BigInteger.ONE)){
 			BigDecimal total = new BigDecimal(0.0);
-			for (BigInteger j = BigInteger.valueOf(1); j.compareTo(i) < 0; j = j.add(BigInteger.ONE)) {
+			for (BigInteger j = BigInteger.valueOf(1); j.compareTo(BigInteger.valueOf(i.intValue() + 1)) < 0; j = j.add(BigInteger.ONE)) {
 				BigInteger divisions = euclids.getDivisionCountGCD(BigInteger.valueOf(n), j);
 				total = total.add(new BigDecimal(divisions));
 			}
@@ -129,7 +129,7 @@ public class ScatterPlotMode extends AbstractMode {
 		XYSeries series = new XYSeries(D_AVG_N);
 		for (BigInteger i = BigInteger.valueOf(1); i.compareTo(BigInteger.valueOf(n + 1)) < 0; i = i.add(BigInteger.ONE)){
 			BigDecimal total = new BigDecimal(0.0);
-			for (BigInteger j = BigInteger.valueOf(1); j.compareTo(i) < 0; j = j.add(BigInteger.ONE)) {
+			for (BigInteger j = BigInteger.valueOf(1); j.compareTo(BigInteger.valueOf(i.intValue() + 1)) < 0; j = j.add(BigInteger.ONE)) {
 				BigInteger divisions = cic.getDivisionCountGCD(BigInteger.valueOf(n), j);
 				total = total.add(new BigDecimal(divisions));
 			}
